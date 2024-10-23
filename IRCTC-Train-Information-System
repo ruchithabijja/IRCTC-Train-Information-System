@@ -1,0 +1,307 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOmVQ9BpjFfLfooBeBw34jh",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/ruchithabijja/IRCTC-Train-Information-System/blob/main/IRCTC-Train-Information-System\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Project: IRCTC Train Information System\n",
+        "Description: Developed a command-line application that interacts with the Indian Railways API to provide users with various train-related services.\n",
+        "\n",
+        "Technologies Used: Python, Requests Library, API Integration\n",
+        "\n",
+        "Key Features:\n",
+        "\n",
+        "Implemented user input handling to select various options for train services, including:\n",
+        "Checking live train status.\n",
+        "Verifying PNR (Passenger Name Record) status.\n",
+        "Retrieving train schedules.\n",
+        "Checking live station status.\n",
+        "Checking seat availability for specific journeys.\n",
+        "Utilized the Requests library to fetch real-time data from the Indian Railways API, handling JSON responses and error management.\n",
+        "Developed a structured class-based architecture for the application, promoting code reusability and clarity.\n",
+        "Outcome: Improved user experience by providing quick access to critical information about train services, showcasing my ability to integrate APIs and handle real-time data in Python.\n",
+        "\n",
+        "Tips for Your Resume:\n",
+        "Tailor the language to fit the style and tone of your resume.\n",
+        "Quantify outcomes if possible (e.g., number of users, time saved, etc.).\n",
+        "Be prepared to discuss the project in detail during interviews, highlighting challenges you faced and how you overcame them.\n",
+        "Feel free to adjust any of the descriptions or features to better fit your style or the specifics of your implementation!\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "MH5SaaaFatMM"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "class IRCTC:\n",
+        "  def __init__(self):\n",
+        "    user_input = input(\"\"\"How would you like to procced?\n",
+        "    1.Enter '1' to check live train status\n",
+        "    2.Enter '2' to check PNR\n",
+        "    3.Enter '3' to check train schedule  \"\"\")\n",
+        "\n",
+        "    if user_input == '1':\n",
+        "      self.train_schedule()\n",
+        "    elif user_input == '2':\n",
+        "      self.live_train_status()\n",
+        "    elif user_input == '3':\n",
+        "      self.pnr_status()\n",
+        "    elif user_input == '4':\n",
+        "      self.live_station()\n",
+        "    elif user_input == '5':\n",
+        "      self.seat_availability()\n",
+        "    else:\n",
+        "      print(\"Invalid option, please try again.\")\n",
+        "\n",
+        "  def fetch_data(self,train_no):\n",
+        "    Data = Data.json()\n",
+        "    print(Data['Route'])\n",
+        "\n",
+        "    for i in Data['Route']:\n",
+        "      print(i['StationName'],\"|\",i['ArrivalTime'],\"|\",i['DepartureTime'],\"|\",i['Distance'],\"kms\")\n",
+        "\n",
+        "  def train_schedule(self):\n",
+        "    train_no = input(\"Enter train number: \")\n",
+        "    self.fetch_data(train_no)"
+      ],
+      "metadata": {
+        "id": "nuN3SPMogRgf"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "obj = IRCTC()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XToGGVAulVR8",
+        "outputId": "a5676805-16e2-4b5b-a25b-74fe1f90f6bf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "How would you like to procced?\n",
+            "    1.Enter '1' to check live train status \n",
+            "    2.Enter '2' to check PNR\n",
+            "    3.Enter '3' to check train schedule  1\n",
+            "Enter train number: 12222\n",
+            "[{'SerialNo': '1', 'StationCode': 'HWH', 'StationName': 'HOWRAH JN.', 'ArrivalTime': '08:20:00', 'DepartureTime': '08:20:00', 'Distance': '0', 'Day': None}, {'SerialNo': '2', 'StationCode': 'TATA', 'StationName': 'TATANAGAR JN', 'ArrivalTime': '11:38:00', 'DepartureTime': '11:48:00', 'Distance': '254', 'Day': None}, {'SerialNo': '3', 'StationCode': 'BSP', 'StationName': 'BILASPUR JN.', 'ArrivalTime': '17:35:00', 'DepartureTime': '17:45:00', 'Distance': '720', 'Day': None}, {'SerialNo': '4', 'StationCode': 'NGP', 'StationName': 'NAGPUR JN.(C', 'ArrivalTime': '23:20:00', 'DepartureTime': '23:25:00', 'Distance': '1137', 'Day': None}, {'SerialNo': '5', 'StationCode': 'BSL', 'StationName': 'BHUSAVAL JN.', 'ArrivalTime': '03:42:00', 'DepartureTime': '03:47:00', 'Distance': '1534', 'Day': None}, {'SerialNo': '6', 'StationCode': 'MMR', 'StationName': 'MANMAD JN.', 'ArrivalTime': '06:00:00', 'DepartureTime': '06:03:00', 'Distance': '1718', 'Day': None}, {'SerialNo': '7', 'StationCode': 'DD', 'StationName': 'DAUND JN.', 'ArrivalTime': '10:00:00', 'DepartureTime': '10:15:00', 'Distance': '1955', 'Day': None}, {'SerialNo': '8', 'StationCode': 'PUNE', 'StationName': 'PUNE JN.', 'ArrivalTime': '11:45:00', 'DepartureTime': '11:45:00', 'Distance': '2033', 'Day': None}]\n",
+            "HOWRAH JN. | 08:20:00 | 08:20:00 | 0 kms\n",
+            "TATANAGAR JN | 11:38:00 | 11:48:00 | 254 kms\n",
+            "BILASPUR JN. | 17:35:00 | 17:45:00 | 720 kms\n",
+            "NAGPUR JN.(C | 23:20:00 | 23:25:00 | 1137 kms\n",
+            "BHUSAVAL JN. | 03:42:00 | 03:47:00 | 1534 kms\n",
+            "MANMAD JN. | 06:00:00 | 06:03:00 | 1718 kms\n",
+            "DAUND JN. | 10:00:00 | 10:15:00 | 1955 kms\n",
+            "PUNE JN. | 11:45:00 | 11:45:00 | 2033 kms\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "\n",
+        "class IRCTC:\n",
+        "    def __init__(self):\n",
+        "        self.api_key = \"2c6c317a3b1e278ea8cb8919c5fefe8b\"\n",
+        "        user_input = input(\"\"\"How would you like to proceed?\n",
+        "            1. Enter '1' to check live train status\n",
+        "            2. Enter '2' to check PNR\n",
+        "            3. Enter '3' to check train schedule\n",
+        "            4. Enter '4' to check live station status\n",
+        "            5. Enter '5' to check seat availability\n",
+        "            6. Enter '6' to exit\n",
+        "            \"\"\")\n",
+        "\n",
+        "        if user_input == '1':\n",
+        "            self.live_train_status()\n",
+        "        elif user_input == '2':\n",
+        "            self.pnr_status()\n",
+        "        elif user_input == '3':\n",
+        "            self.train_schedule()\n",
+        "        elif user_input == '4':\n",
+        "            self.live_station()\n",
+        "        elif user_input == '5':\n",
+        "            self.seat_availability()\n",
+        "        elif user_input == '6':\n",
+        "            print(\"Exiting...\")\n",
+        "        else:\n",
+        "            print(\"Invalid option, please try again.\")\n",
+        "\n",
+        "    def fetch_data(self, url):\n",
+        "        try:\n",
+        "            response = requests.get(url)\n",
+        "            if response.status_code == 200:\n",
+        "                return response.json()  # Return JSON data if request was successful\n",
+        "            else:\n",
+        "                print(f\"Error fetching data: {response.status_code}\")\n",
+        "        except requests.exceptions.RequestException as e:\n",
+        "            print(f\"Error: {e}\")\n",
+        "        return None\n",
+        "\n",
+        "    def train_schedule(self):\n",
+        "        train_no = input(\"Enter train number: \")\n",
+        "        url = f\"https://indianrailapi.com/api/v2/TrainSchedule/apikey/{self.api_key}/TrainNumber/{train_no}\"\n",
+        "        data = self.fetch_data(url)\n",
+        "        if data and 'Route' in data:\n",
+        "            for i in data['Route']:\n",
+        "                print(i['StationName'], \"|\", i['ArrivalTime'], \"|\", i['DepartureTime'], \"|\", i['Distance'], \"kms\")\n",
+        "        else:\n",
+        "            print(\"No data available for this train.\")\n",
+        "\n",
+        "    def live_train_status(self):\n",
+        "        train_no = input(\"Enter train number: \")\n",
+        "        date = input(\"Enter date in DD-MM-YYYY format: \")\n",
+        "        url = f\"https://indianrailapi.com/api/v2/livetrainstatus/apikey/{self.api_key}/trainnumber/{train_no}/date/{date}\"\n",
+        "        data = self.fetch_data(url)\n",
+        "        if data and 'CurrentStation' in data:\n",
+        "            print(f\"Train {train_no} is currently at {data['CurrentStation']['StationName']} with status: {data['CurrentStation']['TrainStatus']}\")\n",
+        "        else:\n",
+        "            print(\"No live train status available.\")\n",
+        "\n",
+        "    def pnr_status(self):\n",
+        "        pnr_no = input(\"Enter PNR number: \")\n",
+        "        url = f\"https://indianrailapi.com/api/v2/PNRCheck/apikey/{self.api_key}/PNRNumber/{pnr_no}\"\n",
+        "        data = self.fetch_data(url)\n",
+        "        if data and 'PnrNumber' in data:\n",
+        "            print(f\"PNR Status: {data['PnrStatus']}\")\n",
+        "        else:\n",
+        "            print(\"PNR status not found.\")\n",
+        "\n",
+        "    def live_station(self):\n",
+        "        station_code = input(\"Enter station code: \")\n",
+        "        hours = input(\"Enter number of hours: \")\n",
+        "        url = f\"https://indianrailapi.com/api/v2/LiveStation/apikey/{self.api_key}/StationCode/{station_code}/hours/{hours}\"\n",
+        "        data = self.fetch_data(url)\n",
+        "        if data and 'Trains' in data:\n",
+        "            for train in data['Trains']:\n",
+        "                print(f\"Train: {train['TrainName']} | Arrival: {train['ScheduleArrival']} | Departure: {train['ScheduleDeparture']}\")\n",
+        "        else:\n",
+        "            print(\"No live station data available.\")\n",
+        "\n",
+        "    def seat_availability(self):\n",
+        "        train_no = input(\"Enter train number: \")\n",
+        "        from_station = input(\"Enter from station code: \")\n",
+        "        to_station = input(\"Enter to station code: \")\n",
+        "        date = input(\"Enter date of journey (DD-MM-YYYY): \")\n",
+        "        url = f\"https://indianrailapi.com/api/v2/SeatAvailability/apikey/{self.api_key}/TrainNumber/{train_no}/From/{from_station}/To/{to_station}/Date/{date}/Quota/GN/Class/3A\"\n",
+        "        data = self.fetch_data(url)\n",
+        "        if data and 'Availability' in data:\n",
+        "            for availability in data['Availability']:\n",
+        "                print(f\"Date: {availability['JourneyDate']} | Status: {availability['Status']}\")\n",
+        "        else:\n",
+        "            print(\"No seat availability data found.\")\n",
+        "\n",
+        "# Create an instance of the IRCTC class\n",
+        "obj = IRCTC()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "W-n9zKbnWAA7",
+        "outputId": "2195d184-9bb6-4ec9-8243-7225e79eff37"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "How would you like to proceed?\n",
+            "            1. Enter '1' to check live train status \n",
+            "            2. Enter '2' to check PNR\n",
+            "            3. Enter '3' to check train schedule  \n",
+            "            4. Enter '4' to check live station status\n",
+            "            5. Enter '5' to check seat availability  \n",
+            "            6. Enter '6' to exit\n",
+            "            3\n",
+            "Enter train number: 12222\n",
+            "HOWRAH JN. | 08:20:00 | 08:20:00 | 0 kms\n",
+            "TATANAGAR JN | 11:38:00 | 11:48:00 | 254 kms\n",
+            "BILASPUR JN. | 17:35:00 | 17:45:00 | 720 kms\n",
+            "NAGPUR JN.(C | 23:20:00 | 23:25:00 | 1137 kms\n",
+            "BHUSAVAL JN. | 03:42:00 | 03:47:00 | 1534 kms\n",
+            "MANMAD JN. | 06:00:00 | 06:03:00 | 1718 kms\n",
+            "DAUND JN. | 10:00:00 | 10:15:00 | 1955 kms\n",
+            "PUNE JN. | 11:45:00 | 11:45:00 | 2033 kms\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "IRCTC Train Information System\n",
+        "Description: Developed a command-line application to provide real-time train-related services using the Indian Railways API.\n",
+        "\n",
+        "Technologies Used: Python, Requests Library, API Integration\n",
+        "\n",
+        "Key Features:\n",
+        "\n",
+        "Implemented user-friendly options to check live train status, PNR status, train schedules, live station status, and seat availability.\n",
+        "Utilized the Requests library to fetch real-time data from the Indian Railways API, ensuring robust error handling and response validation.\n",
+        "Designed a structured class-based architecture to enhance code reusability and maintainability.\n",
+        "Outcome: Improved accessibility to critical train information, showcasing skills in API integration and data handling in Python.\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "2gGlnKLQab7Y"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "EAwYG8fjWf5K"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
