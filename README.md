@@ -1,4 +1,4 @@
-##IRCTC Train Information System
+IRCTC Train Information System
 Description
 The IRCTC Train Information System is a command-line Python application designed to interact with the Indian Railways API, allowing users to access various real-time train-related services. The application provides a user-friendly interface for checking live train status, PNR (Passenger Name Record) status, train schedules, live station status, and seat availability.
 
